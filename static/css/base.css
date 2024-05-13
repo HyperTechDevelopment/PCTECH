@@ -1,0 +1,125 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  font-size: 2em;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  text-align: center;
+}
+
+.home-button {
+  position: absolute;
+  left: 20px;
+}
+
+.logout-button {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+nav {
+  background-color: #f8f8f8;
+  padding: 20px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  font-size: 1.2em;
+}
+
+nav a {
+  color: #333;
+  text-decoration: none;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #ddd;
+  color: #555;
+}
+
+article {
+  margin: 10px;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+footer {
+  background-color: #1b1b1b;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 1200px) {
+  body {
+    font-size: 16px;
+  }
+
+  header {
+    font-size: 1.4em;
+  }
+
+  .home-button,
+  .logout-button {
+    font-size: 0.7em;
+  }
+}
+
+@media (max-width: 900px) {
+  body {
+    font-size: 14px;
+  }
+
+  header {
+    font-size: 1.3em;
+  }
+
+  .home-button,
+  .logout-button {
+    font-size: 0.6em;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 18px;
+  }
+
+  header {
+    font-size: 1.5em;
+    padding: 10px;
+  }
+
+  .home-button,
+  .logout-button {
+    font-size: 0.8em;
+    padding: 5px 10px;
+  }
+
+  nav {
+    padding: 15px;
+  }
+
+  nav a {
+    padding: 5px 10px;
+  }
+}

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cadastrar Reparo</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/cadastrar_reparo.css') }}">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/solar/bootstrap.min.css" rel="stylesheet">
+    <script>
+        function logout() {
+            if (confirm("Você tem certeza que deseja sair?")) {
+                window.location.href = "{{ url_for('logout') }}";
+            }
+        }
+
+        function validateForm(event) {
+            var selects = document.querySelectorAll('select');
+            var inputs = document.querySelectorAll('input');
+            var valid = true;
+
+            for (let i = 0; i < selects.length; i++) {
+                if (selects[i].value === "" && !selects[i].disabled) {
+                    alert('Por favor, selecione uma opção em todos os campos de seleção.');
+                    valid = false;
+                    break; // Exit the loop after the first alert
+                }
+            }
+
+            if (valid) { // Only proceed if the previous checks passed
+                for (let i = 0; i < inputs.length; i++) {
+                    if (inputs[i].type !== 'checkbox' && inputs[i].value === "" && !inputs[i].disabled) {
+                        alert('Por favor, preencha todos os campos.');
+                        valid = false;
+                        break; // Exit the loop after the first alert
+                    }
+                }
+            }
+
+            if (!valid) {
+                event.preventDefault();
+            }
+
+            return valid;
+        }
+
+
+        function handleDataEntregaChange() {
+            var checkbox = document.getElementById('sem_previsao');
+            var dateInput = document.getElementById('data_entrega_date');
+            dateInput.disabled = checkbox.checked;
+            if (checkbox.checked) {
+                dateInput.value = '';
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <button onclick="window.location.href='{{ url_for('home') }}'" class="btn btn-primary home-button" {% if not
+            session.get('user_id') %}disabled{% endif %}>Home</button>
+        <h1>Manutenção T.I</h1>
+        <button onclick="logout()" class="btn btn-danger logout-button">Logout</button>
+    </header>
+    <form method="POST" action="{{ url_for('cadastrar_reparo') }}" class="needs-validation" novalidate
+        onsubmit="return validateForm(event)">
+        <nav>
+        </nav>
+        <article>
+            <div class="container">
+                <h2 class="my-4">Cadastrar Reparo</h2>
+                <!-- Adicione este bloco de código para exibir mensagens flash -->
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <div class="alert alert-success">
+                            {{ messages[0] }}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+                <!-- Fim do bloco de código para exibir mensagens flash -->
+                <form method="POST" action="{{ url_for('cadastrar_reparo') }}" class="needs-validation" novalidate onsubmit="return validateForm(event)" autocomplete="off">
+                    <div class="form-group">
+                        <label for="eqp_ti">Tipo de Equipamento T.I:</label>
+                        <select id="eqp_ti" name="eqp_ti" class="form-control" required>
+                            <option value="">Selecione um tipo</option>
+                            <option value="Notebook">Notebook</option>
+                            <option value="Desktop">Desktop</option>
+                            <option value="Impressora">Impressora</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="marca_eqp">Marca do Equipamento:</label>
+                        <select id="marca_eqp" name="marca_eqp" class="form-control" required>
+                            <option value="">Selecione uma marca</option>
+                            <option value="Dell">Dell</option>
+                            <option value="Lenovo">Lenovo</option>
+                            <option value="HP">HP</option>
+                            <option value="Multilaser">Multilaser</option>
+                            <option value="Acer">Acer</option>
+                            <option value="Zebra">Zebra</option>
+                            <option value="CONVEX">CONVEX</option>
+                            <option value="Ricoh">Ricoh</option>
+                            <option value="ETTERA">ETTERA</option>
+                            <option value="Outros">Outros</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="modelo_eqp">Modelo do Equipamento:</label>
+                        <input type="text" id="modelo_eqp" name="modelo_eqp" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="serie_eqp">N° Série do Equipamento:</label>
+                        <input type="text" id="serie_eqp" name="serie_eqp" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sr_ticket">Ticket do Chamado:</label>
+                        <input type="text" id="sr_ticket" name="sr_ticket" pattern="#SR-\d{6}" value="#SR-"
+                            class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="justificativa">Justificativa:</label>
+                        <textarea id="justificativa" name="justificativa" class="form-control" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="data_entrega">Data de Entrega:</label>
+                        <input type="checkbox" id="sem_previsao" name="sem_previsao"
+                            onchange="handleDataEntregaChange()"> Sem previsão
+                        <input type="date" id="data_entrega_date" name="data_entrega_date" class="form-control"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="status">Status:</label>
+                        <select id="status" name="status" class="form-control" required>
+                            <option value="">Selecione um status</option>
+                            <option value="Pendente">Pendente</option>
+                            <option value="Em andamento">Em andamento</option>
+                            <option value="Acionado a garantia">Acionado a garantia</option>
+                            <option value="Entregue">Entregue</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Cadastrar Reparo</button>
+                </form>
+        </article>
+        <footer>
+            <p>Manutenção T.I © - 2024</p>
+        </footer>
+</body>
+
+</html>

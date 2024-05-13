@@ -1,0 +1,157 @@
+/* Estilos para o header */
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  font-size: 20px;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #ffffff;
+}
+
+header .btn {
+  margin: 0 5px;
+  position: absolute;
+  top: 20px;
+}
+
+header .btn.home-button {
+  position: absolute;
+  left: 20px;
+}
+
+header .btn.logout-button {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+/* Estilos para a tabela de usuários */
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 35px;
+  background: #fff;
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+}
+
+.table th,
+.table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.table tbody + tbody {
+  border-top: 2px solid #dee2e6;
+}
+
+.table-sm td,
+.table-sm th {
+  padding: 0.3rem;
+}
+
+.btn {
+  padding: 10px;
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #004494;
+}
+
+/* Estilos para o footer */
+footer {
+  background-color: #1b1b1b;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+footer p {
+  margin: 0;
+  color: #ffffff;
+}
+
+@media (max-width: 600px) {
+  header {
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  header h1 {
+    font-size: 20px;
+  }
+
+  header .btn {
+    margin: 0 2px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  header {
+    padding: 15px;
+    font-size: 18px;
+  }
+
+  header h1 {
+    font-size: 22px;
+  }
+
+  header .btn {
+    margin: 0 3px;
+  }
+}
+
+@media (min-width: 1025px) {
+  header {
+    padding: 20px;
+    font-size: 20px;
+  }
+
+  header h1 {
+    font-size: 24px;
+  }
+
+  header .btn {
+    margin: 0 5px;
+  }
+}

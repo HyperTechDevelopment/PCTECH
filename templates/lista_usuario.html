@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lista de Usuários</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/lista_usuario.css') }}">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/journal/bootstrap.min.css" rel="stylesheet">
+    <script>
+        function logout() {
+            if (confirm("Você tem certeza que deseja sair?")) {
+                window.location.href = "{{ url_for('logout') }}";
+            }
+        }
+
+        function deletarUsuario(userId) {
+            if (confirm("Você tem certeza que deseja deletar este usuário?")) {
+                var form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '/usuarios/deletar/' + userId;
+                document.body.appendChild(form);
+                form.submit();
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <button onclick="window.location.href='{{ url_for('home') }}'" class="btn btn-primary home-button" {% if not
+            session.get('user_id') %}disabled{% endif %}>Home</button>
+        <h1>Manutenção T.I</h1>
+        <button onclick="logout()" class="btn btn-danger logout-button">Logout</button>
+    </header>
+
+    <div class="container">
+        <h2 class="my-4">Lista de Usuários</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Login</th>
+                    <th>Perfil</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.nome }}</td>
+                    <td>{{ user.it_login }}</td>
+                    <td>{{ user.perfil }}</td>
+                    <td>
+                        <a href="{{ url_for('editar_usuario', user_id=user.id) }}"
+                            class="btn btn-primary btn-sm">Editar</a> |
+                        <a href="#" onclick="deletarUsuario({{ user.id }})" class="btn btn-danger btn-sm">Deletar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        <p>Manutenção T.I © - 2024 </p>
+    </footer>
+</body>
+
+</html>

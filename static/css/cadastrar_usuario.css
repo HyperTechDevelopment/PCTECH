@@ -1,0 +1,141 @@
+/* Estilos para o header */
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  font-size: 2em;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #ffffff;
+}
+
+header .btn {
+  margin: 0 5px;
+  position: absolute;
+  top: 20px;
+}
+
+header .btn.home-button {
+  position: absolute;
+  left: 20px;
+}
+
+header .btn.logout-button {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+/* Estilos para as páginas de cadastro e edição de usuários */
+.container {
+  width: 200px;
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 40px;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 15px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group select {
+  padding: 6px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.btn {
+  padding: 10px;
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #004494;
+}
+
+/* Estilos para o footer */
+footer {
+  background-color: #1b1b1b;
+  color: white;
+  text-align: center;
+  padding: 1px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+footer p {
+  margin: 0;
+  color: #ffffff;
+}
+
+@media (max-width: 600px) {
+  footer p {
+    font-size: 12px;
+    line-height: 14px;
+    padding: 10px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  footer p {
+    font-size: 14px;
+    line-height: 16px;
+    padding: 15px;
+  }
+}
+
+@media (min-width: 1025px) {
+  footer p {
+    font-size: 16px;
+    line-height: 18px;
+    padding: 20px;
+  }
+}
+
+.alert {
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+}
+
+.alert-warning {
+  background-color: #ff9800; /* Laranja */
+}
+
+.alert-warning::before {
+  content: "⚠️ ";
+}

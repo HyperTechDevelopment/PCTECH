@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Atualizar Reparo</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/atualizar_reparo.css') }}">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/minty/bootstrap.min.css" rel="stylesheet">
+    <script>
+        function logout() {
+            if (confirm("Você tem certeza que deseja sair?")) {
+                window.location.href = "{{ url_for('logout') }}";
+            }
+        }
+        // Adicione esta função
+        var formChanged = false;
+        function setFormChanged() {
+            formChanged = true;
+        }
+        function validateForm() {
+            if (!formChanged) {
+                alert('Por favor, atualize pelo menos um dado.');
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <button onclick="window.location.href='{{ url_for('home') }}'" class="btn btn-primary home-button" {% if not
+            session.get('user_id') %}disabled{% endif %}>Home</button>
+        <h1>Manutenção T.I</h1>
+        <button onclick="logout()" class="btn btn-danger logout-button">Logout</button>
+    </header>
+    <nav>
+    </nav>
+    <article>
+        <div class="container">
+            <h2 class="my-4">Atualizar Reparo</h2>
+            <form method="POST" action="{{ url_for('atualizar_reparo', reparo_id=reparo.id) }}" class="needs-validation"
+                novalidate onsubmit="return validateForm()" onchange="setFormChanged()">
+                <form method="POST" action="{{ url_for('atualizar_reparo', reparo_id=reparo.id) }}"
+                    class="needs-validation" novalidate>
+
+                    <div class="form-group">
+                        <label for="eqp_ti">Equipamento TI:</label>
+                        <select id="eqp_ti" name="eqp_ti" class="form-control">
+                            <option value="" selected disabled>Selecione o equipamento</option>
+                            <option value="Desktop" {% if reparo.eqp_ti=='Desktop' %} selected {% endif %}>Desktop
+                            </option>
+                            <option value="Impressora" {% if reparo.eqp_ti=='Impressora' %} selected {% endif %}>
+                                Impressora</option>
+                            <option value="Notebook" {% if reparo.eqp_ti=='Notebook' %} selected {% endif %}>Notebook
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="status">Status:</label>
+                        <select id="status" name="status" class="form-control" required>
+                            <option value="Pendente" {% if reparo.status=='Pendente' %}selected{% endif %}>Pendente
+                            </option>
+                            <option value="Em andamento" {% if reparo.status=='Em andamento' %}selected{% endif %}>Em
+                                andamento</option>
+                            <option value="Acionado a garantia" {% if reparo.status=='Acionado a garantia' %}selected{%
+                                endif %}>Acionado a garantia</option>
+                            <option value="Entregue" {% if reparo.status=='Entregue' %}selected{% endif %}>Entregue
+                            </option>
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="justificativa">Justificativa:</label>
+                        <textarea id="justificativa" name="justificativa"
+                            class="form-control">{{ reparo.justificativa }}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="modelo_eqp">Modelo do Equipamento:</label>
+                        <input type="text" id="modelo_eqp" name="modelo_eqp" value="{{ reparo.modelo_eqp }}"
+                            class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="serie_eqp">N° de Série do Equipamento:</label>
+                        <input type="text" id="serie_eqp" name="serie_eqp" value="{{ reparo.serie_eqp }}"
+                            class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="marca_eqp">Marca do Equipamento:</label>
+                        <select id="marca_eqp" name="marca_eqp" class="form-control" required>
+                            <option value="Dell" {% if reparo.marca_eqp=='Dell' %}selected{% endif %}>Dell</option>
+                            <option value="Lenovo" {% if reparo.marca_eqp=='Lenovo' %}selected{% endif %}>Lenovo
+                            </option>
+                            <option value="HP" {% if reparo.marca_eqp=='HP' %}selected{% endif %}>HP</option>
+                            <option value="Multilaser" {% if reparo.marca_eqp=='Multilaser' %}selected{% endif %}>
+                                Multilaser</option>
+                            <option value="Acer" {% if reparo.marca_eqp=='Acer' %}selected{% endif %}>Acer</option>
+                            <option value="Zebra" {% if reparo.marca_eqp=='Zebra' %}selected{% endif %}>Zebra</option>
+                            <option value="CONVEX" {% if reparo.marca_eqp=='CONVEX' %}selected{% endif %}>CONVEX
+                            </option>
+                            <option value="Ricoh" {% if reparo.marca_eqp=='Ricoh' %}selected{% endif %}>Ricoh</option>
+                            <option value="Outros" {% if reparo.marca_eqp=='Outros' %}selected{% endif %}>Outros
+                            </option>
+                            <option value="ETTERA" {% if reparo.marca_eqp=='ETTERA' %}selected{% endif %}>ETTERA
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="sem_previsao" name="sem_previsao"
+                            onchange="toggleDataEntrega(this)">
+                        <label class="form-check-label" for="sem_previsao">Sem previsão</label>
+                    </div>
+
+                    <script>
+                        function toggleDataEntrega(checkbox) {
+                            document.getElementById('data_entrega_date').disabled = checkbox.checked;
+                            if (checkbox.checked) {
+                                document.getElementById('data_entrega_date').value = '';
+                            }
+                        }
+                    </script>
+
+                    <div class="form-group">
+                        <label for="data_entrega_date">Data de Entrega:</label>
+                        <input type="date" class="form-control" id="data_entrega_date" name="data_entrega_date"
+                            value="{{ reparo.data_entrega }}">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Atualizar Reparo</button>
+    </article>
+    <footer>
+        <p>Manutenção T.I © - 2024</p>
+    </footer>
+</body>
+
+</html>

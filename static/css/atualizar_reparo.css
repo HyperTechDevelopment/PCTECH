@@ -1,0 +1,115 @@
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  font-size: 2em;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #ffffff;
+}
+
+header .btn {
+  margin: 0 5px;
+  position: absolute; /* Adicionado para posicionar os botões */
+  top: 20px; /* Adicione o valor que desejar para posicionar verticalmente */
+}
+
+header .btn.home-button {
+  position: absolute;
+  left: 20px;
+}
+
+header .btn.logout-button {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+/* Estilos para as páginas relacionadas a reparos */
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #0056b3;
+  font-size: 24px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group textarea,
+.form-group select {
+  width: calc(100% - 20px);
+  padding: 6px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-group textarea {
+  height: 120px;
+  resize: vertical;
+}
+
+/* Estilos para os botões */
+.btn {
+  padding: 10px;
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #004494;
+}
+
+/* Estilos para o footer */
+footer {
+  background-color: #000000;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+footer p {
+  margin: 0;
+  color: #ffffff;
+  font-size: 14px;
+}

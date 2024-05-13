@@ -1,0 +1,165 @@
+/* Estilos para o header */
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 17px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  font-size: 2em;
+  font-weight: 200;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #ffffff;
+}
+
+header .btn {
+  margin: 0 5px;
+  position: absolute;
+  top: 20px;
+}
+
+header .btn.home-button {
+  left: 20px;
+}
+
+header .btn.logout-button {
+  right: 20px;
+}
+
+/* Estilos para as páginas relacionadas a reparos */
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.container h2 {
+  text-align: center;
+  margin-bottom: 22px;
+  font-size: 24px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group textarea,
+.form-group select {
+  width: calc(100% - 20px);
+  padding: 6px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-group textarea {
+  height: 120px;
+  resize: vertical;
+}
+
+.btn {
+  padding: 10px;
+  background-color: #008100;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.btn:hover {
+  background-color: #012650;
+}
+
+.table-reparos {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.table-reparos th,
+.table-reparos td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.table-reparos th {
+  background-color: #f3f3f3;
+}
+
+footer {
+  background-color: #000000;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+footer p {
+  margin: 0;
+  color: #ffffff;
+  font-size: 14px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .btn {
+    font-size: 14px;
+  }
+
+  .btn:hover {
+    background-color: #012650;
+  }
+
+  .table-reparos {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .table-reparos th,
+  .table-reparos td {
+    padding: 5px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .btn {
+    font-size: 16px;
+  }
+
+  .btn:hover {
+    background-color: #012650;
+  }
+
+  .table-reparos {
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  .table-reparos th,
+  .table-reparos td {
+    padding: 8px;
+  }
+}

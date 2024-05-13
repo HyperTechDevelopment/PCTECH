@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Histórico de Reparos</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/reparo_historico.css') }}">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/simplex/bootstrap.min.css" rel="stylesheet">
+    <script>
+        // Adicionaremos a funcionalidade de filtro após o carregamento do documento
+        document.addEventListener("DOMContentLoaded", function () {
+            // Função para filtrar os resultados da tabela
+            function filterTable(column, value) {
+                var rows = document.querySelector("#tabelaReparos tbody").rows;
+
+                for (var i = 0; i < rows.length; i++) {
+                    var cell = rows[i].cells[column].textContent.toUpperCase();
+                    if (cell.indexOf(value.toUpperCase()) > -1) {
+                        rows[i].style.display = "";
+                    } else {
+                        rows[i].style.display = "none";
+                    }
+                }
+            }
+
+            function colorStatus() {
+                var rows = document.querySelector("#tabelaReparos tbody").rows;
+
+                for (var i = 0; i < rows.length; i++) {
+                    var status = rows[i].cells[7].textContent.toUpperCase(); // o índice da coluna de status é 7
+
+                    switch (status) {
+                        case 'PENDENTE':
+                            rows[i].style.backgroundColor = "red";
+                            rows[i].style.color = "white"; // cor da fonte branca para contraste
+                            break;
+                        case 'EM ANDAMENTO':
+                            rows[i].style.backgroundColor = "orange";
+                            rows[i].style.color = "black"; // cor da fonte preta para contraste
+                            break;
+                        case 'ACIONADO A GARANTIA':
+                            rows[i].style.backgroundColor = "yellow";
+                            rows[i].style.color = "black"; // cor da fonte preta para contraste
+                            break;
+                        case 'ENTREGUE':
+                            rows[i].style.backgroundColor = "green";
+                            rows[i].style.color = "white"; // cor da fonte branca para contraste
+                            break;
+                        default:
+                            rows[i].style.backgroundColor = "white"; // cor padrão para status desconhecidos
+                            rows[i].style.color = "black"; // cor da fonte preta para contraste
+                    }
+                }
+            }
+
+            // Chame a função colorStatus
+            colorStatus();
+
+
+            // Adicionaremos event listeners a todos os campos de entrada de filtro
+            var filters = document.querySelectorAll(".filtro-coluna");
+            filters.forEach(function (filter, idx) {
+                filter.addEventListener("keyup", function () {
+                    filterTable(idx, filter.value);
+                });
+            });
+
+            // Adicionando funcionalidade de logout
+            document.querySelector(".logout-button").addEventListener("click", function () {
+                var confirmLogout = confirm("Deseja mesmo sair?");
+                if (confirmLogout) {
+                    fetch('/logout')
+                        .then(response => {
+                            if (response.ok) {
+                                return response.text();
+                            } else {
+                                throw new Error('Erro ao fazer logout');
+                            }
+                        })
+                        .then(() => {
+                            window.location.href = '{{ url_for("login") }}';
+                        })
+                        .catch(error => {
+                            console.error('Erro:', error);
+                        });
+                }
+            });
+
+            // Adicione este novo bloco de código ao final
+            document.addEventListener("DOMContentLoaded", function () {
+                // Função para verificar se existe uma mensagem flash de sucesso e forçar a recarga da página
+                var successMessage = document.querySelector('.alert-success');
+                if (successMessage) {
+                    setTimeout(function () {
+                        window.location.reload(); // Isso recarregará a página após 3 segundos
+                    }, 3000);
+                }
+            });
+
+            // Adicionando funcionalidade ao botão Home
+            document.querySelector(".home-button").addEventListener("click", function () {
+                window.location.href = '{{ url_for("home") }}';
+            });
+        });
+
+    </script>
+</head>
+
+<body>
+    <header>
+        <button class="btn btn-primary home-button" {% if not session.get('user_id') %}disabled{% endif %}>Home</button>
+        <h1>Manutenção T.I</h1>
+        <button class="btn btn-danger logout-button">Logout</button>
+    </header>
+    <nav>
+    </nav>
+    <article>
+        <!-- Envolver a tabela na div com a classe table-responsive -->
+        <div class="table-responsive">
+            <h2 class="my-4 text-center">Histórico de Reparos</h2>
+            <table class="table table-striped" id="tabelaReparos">
+                <thead>
+                    <tr>
+                        <!-- Linha dos filtros -->
+                        <th><input type="text" class="form-control" onkeyup="filterColumn(0, this.value)"
+                                placeholder="Buscar por ID"></th>
+                        <th><input type="text" class="form-control" onkeyup="filterColumn(1, this.value)"
+                                placeholder="Buscar por Equipamento"></th>
+                        <th><input type="text" class="form-control" onkeyup="filterColumn(2, this.value)"
+                                placeholder="Buscar por Modelo"></th>
+                        <th><input type="text" class="form-control" onkeyup="filterColumn(3, this.value)"
+                                placeholder="Buscar por Marca"></th>
+                        <th><input type="text" class="form-control" onkeyup="filterColumn(4, this.value)"
+                                placeholder="Buscar por Nº Série"></th>
+                        <th><input type="text" class="form-control" onkeyup="filterColumn(5, this.value)"
+                                placeholder="Buscar por Data de Registro"></th>
+                        <th><input type="text" class="form-control" onkeyup="filterColumn(6, this.value)"
+                                placeholder="Buscar por Técnico"></th>
+                        <th><input type="text" class="form-control" onkeyup="filterColumn(7, this.value)"
+                                placeholder="Buscar por Status"></th>
+                        <th><input type="text" class="form-control" onkeyup="filterColumn(8, this.value)"
+                                placeholder="Buscar por SR Ticket"></th>
+                        <th><input type="text" class="form-control" onkeyup="filterColumn(9, this.value)"
+                                placeholder="Buscar por Justificativa"></th>
+                        <th><input type="text" class="form-control" onkeyup="filterColumn(10, this.value)"
+                                placeholder="Buscar por Data de Entrega"></th>
+                        <th><input type="text" class="form-control" onkeyup="filterColumn(11, this.value)"
+                                placeholder="Buscar por Status Atual"></th>
+                        <th>Ações</th>
+                    </tr>
+                    <!-- Cabeçalho da tabela -->
+                    <tr>
+                        <th>ID do Reparo</th>
+                        <th>Equipamento TI</th>
+                        <th>Modelo do Equipamento</th>
+                        <th>Marca do Equipamento</th>
+                        <th>Número de Série do Equipamento</th>
+                        <th>Data de Registro</th>
+                        <th>Técnico</th>
+                        <th>Status</th>
+                        <th>SR Ticket</th>
+                        <th>Justificativa</th>
+                        <th>Data de Entrega</th>
+                        <th>Status Atual</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reparo in reparos %}
+                    <tr>
+                        <td>{{ reparo.ID_reparo }}</td>
+                        <td>{{ reparo.eqp_ti }}</td>
+                        <td>{{ reparo.modelo_eqp }}</td>
+                        <td>{{ reparo.marca_eqp }}</td>
+                        <td>{{ reparo.serie_eqp }}</td>
+                        <td>{{ reparo.data_fix.strftime('%Y-%m-%d %H:%M') }}</td>
+                        <td>{{ reparo.tecnico }}</td>
+                        <td>{{ reparo.status }}</td>
+                        <td>{{ reparo.sr_ticket }}</td>
+                        <td>{{ reparo.justificativa }}</td>
+                        <td>{{ reparo.data_entrega }}</td>
+                        <td>{{ reparo.status }}</td>
+                        <td>
+                            <a href="{{ url_for('atualizar_reparo', reparo_id=reparo.id) }}"
+                                class="btn btn-primary btn-sm">Atualizar</a>
+                            <a href="{{ url_for('ver_reparo', reparo_id=reparo.id) }}"
+                                class="btn btn-secondary btn-sm">Ver</a>
+                            <a href="{{ url_for('reimprimir_comprovante', reparo_id=reparo.ID_reparo) }}"
+                                class="btn btn-info btn-sm">Download Comprovante</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <script>
+            function filterColumn(column, value) {
+                var rows = document.querySelector("#tabelaReparos tbody").rows;
+
+                for (var i = 0; i < rows.length; i++) {
+                    var cell = rows[i].cells[column].textContent.toUpperCase();
+                    if (cell.indexOf(value.toUpperCase()) > -1) {
+                        rows[i].style.display = "";
+                    } else {
+                        rows[i].style.display = "none";
+                    }
+                }
+            }
+        </script>
+    </article>
+    <footer>
+        <p>Manutenção T.I © - 2024</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,134 @@
+/* Estilos comuns para os dashboards do administrador e do técnico */
+body {
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("/static/background_admin.png") no-repeat center center fixed;
+  background-size: cover;
+}
+
+.container.dashboard {
+  width: 100%;
+  max-width: 800px; /* Aumentando a largura máxima para acomodar mais conteúdo */
+  margin: 90px auto;
+  padding: 50px;
+  background: rgba(245, 245, 245, 0.5);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  font-family: "Arial", sans-serif;
+  color: #000000;
+  top: 190px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.container.dashboard h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #444;
+  font-size: 30px; /* Aumentando o tamanho da fonte para melhor destaque */
+}
+
+.container.dashboard .list-group {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 18px;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.container.dashboard .list-group-item {
+  padding: 20px; /* Aumentando o padding para melhor separação entre os itens */
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.3s ease; /* Adicionando transição para suavizar a mudança de cor */
+}
+
+.container.dashboard .list-group-item:hover {
+  background-color: #eee; /* Adicionando cor de fundo ao passar o mouse para melhor feedback visual */
+}
+
+.container.dashboard .list-group-item:last-child {
+  border-bottom: none;
+}
+
+/* Estilos para o header */
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  font-size: 20px;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #ffffff;
+}
+
+header .btn {
+  margin: 0 5px;
+  position: absolute; /* Adicionado para posicionar os botões */
+  top: 20px; /* Adicione o valor que desejar para posicionar verticalmente */
+}
+
+header .btn.home-button {
+  left: 20px; /* Adicionado para posicionar o botão Home à esquerda */
+}
+
+header .btn.logout-button {
+  right: 20px; /* Adicionado para posicionar o botão Logout à direita */
+}
+
+/* Estilos para o footer */
+footer {
+  background-color: #1b1b1b;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+footer p {
+  margin: 0;
+  color: #ffffff;
+}
+
+@media (max-width: 600px) {
+  .container.dashboard {
+    padding: 20px;
+    top: 100px;
+  }
+
+  .container.dashboard h2 {
+    font-size: 20px;
+  }
+
+  .container.dashboard .list-group {
+    padding: 10px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .container.dashboard {
+    padding: 30px;
+    top: 150px;
+  }
+
+  .container.dashboard h2 {
+    font-size: 25px;
+  }
+
+  .container.dashboard .list-group {
+    padding: 15px;
+  }
+}

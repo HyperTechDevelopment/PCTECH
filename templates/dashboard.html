@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Welcome, {{ session.username }}!</h2>
+
+{% if session.profile == 'admin' %}
+<div>
+    <h3>Admin Dashboard</h3>
+    <a href="{{ url_for('cadastrar_usuario') }}">Cadastrar Usuário</a>
+    <a href="{{ url_for('lista_usuario') }}">Ver Lista de Usuários</a>
+</div>
+{% else %}
+<div>
+    <h3>Technician Dashboard</h3>
+    <a href="{{ url_for('cadastrar_reparo') }}">Cadastrar Reparo</a>
+    <a href="{{ url_for('reparo_historico') }}">Histórico de Reparo</a>
+    <a href="{{ url_for('atualizar_reparo') }}">Atualizar Dados</a>
+</div>
+{% endif %}
+
+<a href="{{ url_for('logout') }}">Logout</a>
+{% endblock %}

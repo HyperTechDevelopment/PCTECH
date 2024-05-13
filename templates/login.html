@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='pc_logo.png') }}">
+    <title>Login PCT</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/darkly/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='logo_empresa.png') }}" alt="Logo da Empresa" style="float: left;">
+        <h1>PCTech</h1>
+        <span id="clock"></span>
+    </header>
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const day = now.getDate().toString().padStart(2, '0');
+            const month = (now.getMonth() + 1).toString().padStart(2, '0'); // getMonth() retorna um valor de 0-11, então adicionamos 1
+            const year = now.getFullYear();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            document.getElementById('clock').textContent = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
+
+
+    <div class="container">
+        <div class="d-flex justify-content-center h-100">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Entrar</h3>
+                </div>
+                <div class="card-body">
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <div class="alert alert-danger">
+                        {% for message in messages %}
+                        <p>{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% endwith %}
+                    <form method="POST" action="{{ url_for('login') }}">
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input type="text" id="username" name="username" class="form-control" placeholder="Usuário"
+                                required>
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" id="password" name="password" class="form-control"
+                                placeholder="Senha" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary float-right">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>PCT © - CALLIDUS 2024</p>
+        <button id="sobreBtn" class="sobre-btn">Sobre</button>
+    </footer>
+
+    <!-- Modal -->
+    <div id="sobreModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Este é um sistema desenvolvido para o time de T.I da Callidus.</p>
+            <p>Ele foi projetado para facilitar o gerenciamento de reparos de equipamentos de TI.</p>
+        </div>
+    </div>
+
+    <script>
+        // Obtém o modal
+        var modal = document.getElementById("sobreModal");
+
+        // Obtém o botão que abre o modal
+        var btn = document.getElementById("sobreBtn");
+
+        // Obtém o elemento <span> que fecha o modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // Quando o usuário clica no botão, abre o modal 
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        // Quando o usuário clica em <span> (x), fecha o modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // Quando o usuário clica em qualquer lugar fora do modal, fecha ele
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+
+</html>
