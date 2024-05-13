@@ -53,6 +53,8 @@ PCTECH é um sistema web desenvolvido em Python utilizando o framework Flask, de
 6. Acesse o sistema no navegador:
     http://127.0.0.1:5000
 
+7. Se optar por hospedar em um servidor, será necessário configurá-lo para tal, através do NGINX ou APACHE.
+
 ## Dependências
 As dependências do projeto estão listadas no arquivo `requirements.txt` e incluem:
 - Flask
@@ -61,6 +63,8 @@ As dependências do projeto estão listadas no arquivo `requirements.txt` e incl
 - psycopg2-binary
 - uuid
 - reportlab
+
+Sistema foi desenvolvido especificamente para uma equipe de T.I nas empresas.
 
 ## Autores
 HyperTech
