@@ -13,6 +13,22 @@ PCTECH é um sistema web desenvolvido em Python utilizando o framework Flask, de
 - **Histórico de Reparos**
 - **Impressão de Comprovante**
 
+## Tela de Login:
+![image](https://github.com/HyperTechDevelopment/PCTECH/assets/155833544/cc034b35-eb3a-4a40-b031-e31715d5b5b1)
+
+## Página de Administrador:
+![image](https://github.com/HyperTechDevelopment/PCTECH/assets/155833544/b20a48af-0d0c-4c37-9587-b187b8d6a051)
+
+## Página de Técnico:
+![image](https://github.com/HyperTechDevelopment/PCTECH/assets/155833544/6af0cc09-5c06-4c21-bf23-b82776ce1bbf)
+
+## Cadastro de Reparo:
+![image](https://github.com/HyperTechDevelopment/PCTECH/assets/155833544/cb82d815-516e-40b7-a4f9-e5715767559a)
+
+## Histórico de Reparos:
+![image](https://github.com/HyperTechDevelopment/PCTECH/assets/155833544/fb09a3e2-fada-435c-9332-be84766516ce)
+
+
 
 ## Como Executar
 
