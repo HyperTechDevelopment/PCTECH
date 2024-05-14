@@ -1,4 +1,5 @@
 # PCTECH
+![background_with_text](https://github.com/HyperTechDevelopment/PCTECH/assets/155833544/de29fc6d-4c10-4c79-a202-0bab8cc0231c)
 
 ## Descrição do Projeto
 PCTECH é um sistema web desenvolvido em Python utilizando o framework Flask, destinado ao gerenciamento de reparo de equipamentos de TI. O sistema permite o login de usuários, cadastro e edição de usuários, cadastro e consulta de reparos, visualização de histórico de reparos, e impressão de comprovantes.
@@ -11,6 +12,7 @@ PCTECH é um sistema web desenvolvido em Python utilizando o framework Flask, de
 - **Consulta de Reparo**
 - **Histórico de Reparos**
 - **Impressão de Comprovante**
+
 
 ## Como Executar
 
